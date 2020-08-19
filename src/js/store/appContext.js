@@ -22,64 +22,9 @@ const injectContext = PassedComponent => {
 		);
 
 		useEffect(() => {
-			const data = [
-				{
-					name: "Luis Rosales",
-					address: "Calle General Pardiñas, 34",
-					number: "+34 648244118",
-					email: "luigirosales84@gmail.com"
-				},
-				{
-					name: "Carlos Rosales",
-					address: "Calle Colombia Pardiñas, 34",
-					number: "+34 64824411231231218",
-					email: "carlosrosales84@gmail.com"
-				},
-				{
-					name: "panpan Rosales",
-					address: "asdsaas General Pardiñas, 34",
-					number: "+34 asdasda",
-					email: "asdadasdsa@gmail.com"
-				}
-			];
-			console.log(data);
-
-			fetch("https://assets.breatheco.de/apis/fake/contact/luigiRP", {
-				method: "PUT", // or 'PUT'
-				headers: {
-					"Content-Type": "application/json"
-				},
-				body: JSON.stringify(data)
-			})
-				.then(response => response.json())
-				.then(data => {
-					console.log("Success:", data);
-				})
-				.catch(error => {
-					console.error("Error:", error);
-				});
-			// let response = await fetch(
-			// 		"https://assets.breatheco.de/apis/fake/todos/user/luigiRP"
-			// 	);
-			// 	let data = await response.json();
-			// 	if (tasks.length == 0) {
-			// 		setTasks(data);
-			// 	} else {
-			// 		console.log(tasks);
-			// 	}
+			state.actions.getContacts();
 		}, []);
-		/**
-		 * EDIT THIS!
-		 * This function is the equivalent to "window.onLoad", it only runs once on the entire application lifetime
-		 * you should do your ajax requests or fetch api requests here. Do not use setState() to save data in the
-		 * store, instead use actions, like this:
-		 *
-		 * state.actions.loadSomeData(); <---- calling this function from the flux.js actions
-		 *
-		 **/
-		// The initial value for the context is not null anymore, but the current state of this component,
-		// the context will now have a getStore, getActions and setStore functions available, because they were declared
-		// on the state of this component
+
 		return (
 			<Context.Provider value={state}>
 				<PassedComponent {...props} />

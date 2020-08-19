@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
+import { Context } from "../store/appContext.js";
 
 export default function Contact(props) {
+	const { actions } = useContext(Context);
 	return (
 		<div>
 			<div className="row p-3 justify-content-between align-items-center border-bottom border-secondary">
@@ -25,7 +27,10 @@ export default function Contact(props) {
 				</div>
 				<div className="col-6 d-flex justify-content-center">
 					<i className="fas fa-pencil-alt mx-5 font" />
-					<i className="fas fa-trash mx-5 text-danger font" />
+					<i
+						className="fas fa-trash mx-5 text-danger font"
+						onClick={() => actions.deleteContact(props.contactId)}
+					/>
 				</div>
 			</div>
 		</div>
@@ -36,5 +41,6 @@ Contact.propTypes = {
 	name: PropTypes.string,
 	number: PropTypes.string,
 	address: PropTypes.string,
-	email: PropTypes.string
+	email: PropTypes.string,
+	contactId: PropTypes.string
 };
